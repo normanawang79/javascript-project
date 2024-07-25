@@ -3,8 +3,8 @@ const BIN_ID = "652e334254105e766fc35326";
 const MASTER_KEY = "$2a$10$EZfkhAp55cb1nD3GBqXbaeHPg.9VYRj2u4mWKFwEIbVtER1wGdiNy";
 
 
-function addTodo(todos, name, urgency) {
-  let newTodo = {
+function addMovie(movies, title, year, rating, genre) {
+  let newMovie = {
     id: Math.floor(Math.random() * 100 + 1),
     name: name,
     urgency: urgency

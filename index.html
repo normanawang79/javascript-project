@@ -11,23 +11,32 @@
 
 <body>
   <div class="container mt-5">
-    <h1 class="text-center">Movie2 List</h1>
+    <h1 class="text-center">Movie List</h1>
     <div class="mb-3">
-      <input type="text" id="taskName" class="form-control" placeholder="Task Name">
+      <input type="text" id="movieTitle" class="form-control" placeholder="Title">
     </div>
     <div class="mb-3">
-      <select id="taskUrgency" class="form-control">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
+      <input type="text" id="movieYear" class="form-control" placeholder="Year">
+    </div>
+    <div class="mb-3">
+      <input type="text" id="movieRating" class="form-control" placeholder="Rating">
+    </div>
+    <div class="mb-3">
+      <select id="movieGenre" class="form-control">
+        <option value="animation">Animation</option>
+        <option value="comedy">Comedy</option>
+        <option value="drama">Drama</option>
+        <option value="horror">Horror</option>
+        <option value="thriller">Thriller</option>
       </select>
     </div>
-    <button id="addTodo" class="btn btn-primary mb-3">Add Todo</button>
+
+    <button id="addMovie" class="btn btn-primary mb-3">Add Movie</button>
 
 
 
-    <ul id="todoList" class="list-group">
-      <!-- Todo items will be appended here -->
+    <ul id="movieList" class="list-group">
+      <!-- Movie items will be appended here -->
     </ul>
     <button id="save-btn" class="btn btn-success mt-3">Save</button>
   </div>

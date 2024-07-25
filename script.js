@@ -1,37 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     async function main() {
-      let todos = await loadTasks();
+      let movies = await loadMovies();
   
-      const addTodoButton = document.querySelector("#addTodo");
-      addTodoButton.addEventListener('click', function() {
-        const taskNameInput = document.querySelector("#taskName")
-        const taskName = taskNameInput.value;
+      const addMovieButton = document.querySelector("#addMovie");
+      addMovieButton.addEventListener('click', function() {
+        let movieTitleInput = document.querySelector("#movieTitle")
+        movieTitle = movieTitleInput.value;
+        
+        let movieYearInput = document.querySelector("#movieYear")
+        movieYear = movieYearInput.value;
+       
   
-        const taskUrgencySelect = document.querySelector("#taskUrgency");
-        const taskUrgency = taskUrgencySelect.value;
-  
-        if (taskName) {
-          addTodo(todos, taskName, taskUrgency);
-          renderTodos(todos);
-          taskNameInput.value = '';
+        if (movieTitle) {
+          addMovie(movies, movieTitle, movieYear, movieRating, movieGenre);
+          renderMovies(movies);
+          movieTitleInput.value = '';
         }
       });
   
       const saveButton = document.querySelector("#save-btn");
       saveButton.addEventListener("click", async function() {
-        saveTasks(todos);
+        saveMovies(movies);
       })
   
   
       // add three todos
-      renderTodos(todos);
+      renderMovies(movies);
     }
   
   
-    function renderTodos(todos) {
-      todoList.innerHTML = '';
-      for (let todo of todos) {
+    function renderMovies(movies) {
+      movieList.innerHTML = '';
+      for (let movie of movies) {
         const li = document.createElement('li');
         li.className = 'list-group-item d-flex justify-content-between align-items-center';
         li.innerHTML = `
