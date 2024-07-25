@@ -54,4 +54,6 @@ async function saveTasks(todos) {
       "X-Master-Key": MASTER_KEY
     }
   });
-  return response.data};
+  return response.data;
+
+}
