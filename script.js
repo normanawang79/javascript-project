@@ -1,69 +1,86 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+  const movieList = document.querySelector('#movieList');
+  const titleInput = document.querySelector('#title');
+  const yearInput = document.querySelector('#year');
+  const ratingInput = document.querySelector('#rating');
+  const genreInput = document.querySelector('#genre');
+  const addMovieButton = document.querySelector('#addMovie');
 
-    async function main() {
-      let movies = await loadMovies();
-  
-      const addMovieButton = document.querySelector("#addMovie");
-      addMovieButton.addEventListener('click', function() {
-        let movieTitleInput = document.querySelector("#movieTitle")
-        movieTitle = movieTitleInput.value;
-        
-        let movieYearInput = document.querySelector("#movieYear")
-        movieYear = movieYearInput.value;
-       
-  
-        if (movieTitle) {
-          addMovie(movies, movieTitle, movieYear, movieRating, movieGenre);
-          renderMovies(movies);
-          movieTitleInput.value = '';
-        }
-      });
-  
-      const saveButton = document.querySelector("#save-btn");
-      saveButton.addEventListener("click", async function() {
-        saveMovies(movies);
-      })
-  
-  
-      // add three todos
-      renderMovies(movies);
-    }
-  
-  
-    function renderMovies(movies) {
-      movieList.innerHTML = '';
-      for (let movie of movies) {
-        const li = document.createElement('li');
-        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-        li.innerHTML = `
-                  ${todo.name} <span class="badge  bg-primary">${todo.urgency}</span>
-                  <button class="btn edit-btn btn-success btn-sm">Edit</button>
-                  <button class="btn delete-btn btn-danger btn-sm">Delete</button>
-                  
+  const apiUrl = 'https://api.example.com/movies'; // Replace with your API URL
+
+  const fetchMovies = async () => {
+      try {
+          const response = await axios.get(apiUrl);
+          const movies = response.data;
+          movieList.innerHTML = '';
+          movies.forEach(movie => {
+              const li = document.createElement('li');
+              li.className = 'list-group-item';
+              li.innerHTML = `
+                  <span>${movie.title} (${movie.year}) - ${movie.rating} - ${movie.genre}</span>
+                  <div>
+                      <button class="btn btn-warning btn-sm edit" data-id="${movie.id}">Edit</button>
+                      <button class="btn btn-danger btn-sm delete" data-id="${movie.id}">Delete</button>
+                  </div>
               `;
-  
-        todoList.appendChild(li);
-  
-        // select the edit button which we just created
-        li.querySelector(".edit-btn").addEventListener('click', function() {
-          const newName = prompt("Enter the new task name: ", todo.name);
-          const newUrgency = prompt("Enter the new urgency:", todo.urgency);
-          modifyTask(todos, todo.id, newName, newUrgency);
-          renderTodos(todos);
-        });
-  
-        // allow deleting
-        li.querySelector(".delete-btn").addEventListener('click', function() {
-          const confirmation = confirm("Do you want to delete the task: " + todo.name + "?");
-          if (confirmation) {
-            deleteTask(todos, todo.id);
-            renderTodos(todos);
-          }
-        });
-  
+              movieList.appendChild(li);
+          });
+      } catch (error) {
+          console.error('Error fetching movies:', error);
       }
-    }
-  
-    main();
+  };
+
+  const addMovie = async () => {
+      const newMovie = {
+          title: titleInput.value,
+          year: yearInput.value,
+          rating: ratingInput.value,
+          genre: genreInput.value
+      };
+
+      try {
+          const response = await axios.post(apiUrl, newMovie);
+          const movie = response.data;
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `
+              <span>${movie.title} (${movie.year}) - ${movie.rating} - ${movie.genre}</span>
+              <div>
+                  <button class="btn btn-warning btn-sm edit" data-id="${movie.id}">Edit</button>
+                  <button class="btn btn-danger btn-sm delete" data-id="${movie.id}">Delete</button>
+              </div>
+          `;
+          movieList.appendChild(li);
+          titleInput.value = '';
+          yearInput.value = '';
+          ratingInput.value = '';
+          genreInput.value = '';
+      } catch (error) {
+          console.error('Error adding movie:', error);
+      }
+  };
+
+  const deleteMovie = async (id) => {
+      try {
+          await axios.delete(`${apiUrl}/${id}`);
+          const movieItem = document.querySelector(`.delete[data-id="${id}"]`).parentElement.parentElement;
+          movieItem.remove();
+      } catch (error) {
+          console.error('Error deleting movie:', error);
+      }
+  };
+
+  movieList.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete')) {
+          const id = e.target.dataset.id;
+          deleteMovie(id);
+      } else if (e.target.classList.contains('edit')) {
+          const id = e.target.dataset.id;
+          // Handle edit functionality here
+          console.log(`Edit movie with id ${id}`);
+      }
   });
-  
+
+  addMovieButton.addEventListener('click', addMovie);
+  fetchMovies();
+});
