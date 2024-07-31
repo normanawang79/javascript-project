@@ -2,12 +2,6 @@
 # Project Name: One-Stop Portal Service for M4M Massages
 This project is about creating a landing page of a website that functions as a one-stop portal where users can access massage places/individuals based on the different types of massage treatments provided. 
 
-One or two paragraphs providing an overview of your project. Tell us about your project.
-
-Essentially, this part is your sales pitch.
-This project is about creating a landing page of a website that functions as a one-stop portal where users can access massage places/masseurs based on the different types of massage treatments provided. 
-
-
 ## Design Process
 The Problem: Most massage websites offer many treatments and it is time-consuming for users to read the whole website, to look for their preferred massage treatments and then repeat this process by visiting and comparing other massage websites before finally deciding on which treatment they want. 
 
@@ -16,6 +10,7 @@ The Solution: So, this portal is created to minimise the time spent by users sur
 The Solution: So, this portal is created to minimise the time spent by users surfing many websites. The portal acts as a one-stop service where users can just click on any of their preferred massage treatment and will have access to the brief description of the massage treatment as well as the massage providers providing that specific massage treatment. 
 
 Provide us insights about your design process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+
 ## Features
 Existing Features: 
 
