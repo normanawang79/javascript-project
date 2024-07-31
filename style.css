@@ -1,9 +1,10 @@
 body {
     height: 100%;
     width: 100%;
-    background-color: rgb(226, 214, 239);
+    background-color: rgb(223, 219, 227);
   }
   .text-center {
+    color:rgb(40, 40, 223);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   
   }
