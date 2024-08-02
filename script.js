@@ -63,7 +63,7 @@ const newRating = prompt("Enter the new movie rating: ", movie.rating);
 
       // allow deleting
       li.querySelector(".delete-btn").addEventListener('click', function() {
-        const confirmation = confirm("Do you want to delete the movie: " + movie.title + "?");
+        const confirmation = confirm("Bitch, do you really want to delete the movie: " + movie.title + "?");
         if (confirmation) {
           deleteMovie(movies, movie.id);
           renderMovies(movies);
